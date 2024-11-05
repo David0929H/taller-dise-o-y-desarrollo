@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración de Órdenes - Ruta Culinaria</title>
+    <link rel="stylesheet" href="{% static 'estilos/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- barra -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand mx-auto" href="{% url 'pagina_principal' %}" style="font-size: 1.8em; font-weight: bold;">RUTA CULINARIA</a>
+            <div class="ml-auto">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'carrito' %}">Carrito</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login_cliente' %}">Iniciar Sesión</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login_admin' %}">Administración</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-image mb-4">
+        <img src="{% static 'imagenes/header.jpg' %}" alt="Header Image" class="img-fluid w-100">
+    </div>
+
+    <!-- opsfdshpfdh -->
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>Administración de Órdenes</h2>
+        </div>
+        
+        <!-- lista de ordenes -->
+        <div class="row">
+            {% for orden in ordenes %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Orden #{{ orden.id }}</h5>
+                        <p class="card-text"><strong>Cliente:</strong> {{ orden.cliente.username }}</p>
+                        <p class="card-text"><strong>Fecha:</strong> {{ orden.fecha }}</p>
+                        <p class="card-text"><strong>Total:</strong> ${{ orden.total }}</p>
+                        <p class="card-text"><strong>Estado:</strong> {{ orden.estado }}</p>
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'aceptar_pedido' orden.id %}" class="btn btn-success">Aceptar</a>
+                            <a href="{% url 'rechazar_pedido' orden.id %}" class="btn btn-danger">Rechazar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- registrar platos -->
+        <div class="text-center mt-4">
+            <a href="{% url 'menu_admin' %}" class="btn btn-primary">Añadir Nuevo Plato</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

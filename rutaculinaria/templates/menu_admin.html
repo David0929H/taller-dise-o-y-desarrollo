@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Admin</title>
+    <link rel="stylesheet" href="{% static 'estilos/styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'pagina_principal' %}">Inicio</a>
+            <a href="{% url 'ordenes' %}">Ver Órdenes</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="admin-section">
+            <h1>Registrar Nuevo Plato</h1>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="nombre">Nombre del Plato:</label>
+                <input type="text" name="nombre" id="nombre" required><br>
+
+                <label for="descripcion">Descripción:</label>
+                <textarea name="descripcion" id="descripcion" required></textarea><br>
+
+                <label for="imagen">Imagen del Plato:</label>
+                <input type="file" name="imagen" id="imagen" required><br>
+
+                <button type="submit">Registrar Plato</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Restaurante - Administración</p>
+    </footer>
+</body>
+</html>

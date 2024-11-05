@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del Cliente</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'pagina_principal' %}">Inicio</a>
+            <a href="{% url 'logout' %}">Cerrar Sesión</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="perfil-section">
+            <h2>Perfil de {{ user.username }}</h2>
+            <p><strong>Correo electrónico:</strong> {{ user.email }}</p>
+            <p><strong>Fecha de registro:</strong> {{ user.date_joined }}</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Restaurante</p>
+    </footer>
+</body>
+</html>
